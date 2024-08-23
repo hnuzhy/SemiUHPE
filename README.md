@@ -106,13 +106,13 @@ Qualitative results of our method (3rd line) and DAD-3DNet (2nd line) on heads f
   ```
   Note, the corresponding pretrained model weights `DAD-COCOHead-ResNet50-best.pth` and `DAD-WildHead-EffNetV2-S-best.pth` for unconstrained head pose estimation are released in [huggingface](https://huggingface.co/HoyerChou/SemiUHPE) or [hf-mirror.com](https://hf-mirror.com/HoyerChou/SemiUHPE).
 
-  For the used `head detection` model weight **ch_head_l_1536_e150_best_mMR.pt** in [image.py](https://github.com/hnuzhy/SemiUHPE/blob/main/image.py#L136) and [video.py](https://github.com/hnuzhy/SemiUHPE/blob/main/video.py#L131) scripts, you can download it from our previous work [BPJDetPlus](https://huggingface.co/HoyerChou/BPJDet/blob/main/ch_head_l_1536_e150_best_mMR.pt) for `body-head joint detection`.
+  For the used `head detection` model weight **ch_head_l_1536_e150_best_mMR.pt** in [image.py](https://github.com/hnuzhy/SemiUHPE/blob/main/image.py#L136) and [video.py](https://github.com/hnuzhy/SemiUHPE/blob/main/video.py#L131) scripts, you can download it from our previous work [BPJDetPlus](https://huggingface.co/HoyerChou/BPJDet/blob/main/ch_head_l_1536_e150_best_mMR.pt) for `body-head joint detection` of multiple persons.
 
   Many more impressive demos of images and videos can be found in our [project homepage](https://hnuzhy.github.io/projects/SemiUHPE/).
 
 
 ## ● Acknowledgement
-Our codebase is partly based on [Probabilistic matrix-Fisher](https://github.com/Davmo049/Public_prob_orientation_estimation_with_matrix_fisher_distributions), [FisherMatch](https://github.com/yd-yin/FisherMatch/) and [DAD-3DHeads](https://github.com/PinataFarms/DAD-3DHeads). The head detection model is based on our previous work [BPJDet](https://hnuzhy.github.io/projects/BPJDet/). The 3d face mesh render is based on [3DDFA_V2 - Sim3DR](https://github.com/cleardusk/3DDFA_V2/tree/master/Sim3DR). We also thank public wild head-related datasets [COCOHead](https://cocodataset.org/), [CrowdHuman](https://www.crowdhuman.org/) and [OpenImageV6](https://storage.googleapis.com/openimages/web/index.html) for their laborious and excellent works.
+Our codebase is partly based on [Probabilistic matrix-Fisher](https://github.com/Davmo049/Public_prob_orientation_estimation_with_matrix_fisher_distributions), [FisherMatch](https://github.com/yd-yin/FisherMatch/) and [DAD-3DHeads](https://github.com/PinataFarms/DAD-3DHeads). The head detection model is based on our previous work [BPJDet](https://hnuzhy.github.io/projects/BPJDet/) for `multi-person body-head joint detection`. The 3d face mesh render is based on [3DDFA_V2 - Sim3DR](https://github.com/cleardusk/3DDFA_V2/tree/master/Sim3DR). We also thank public wild head-related datasets [COCOHead](https://cocodataset.org/), [CrowdHuman](https://www.crowdhuman.org/) and [OpenImageV6](https://storage.googleapis.com/openimages/web/index.html) for their laborious and excellent works.
 
 
 ## ● Citation
