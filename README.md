@@ -16,7 +16,7 @@ Qualitative results of our method (3rd line) and DAD-3DNet (2nd line) on heads f
 <table>
   <tr>
     <td><img src="https://github.com/hnuzhy/hnuzhy.github.io/blob/main/projects/SemiUHPE/application/PartB_00167_res_BPJDetSemiUHPE.jpg" width=120%></td>
-    <td><img src="https://github.com/hnuzhy/hnuzhy.github.io/blob/main/projects/SemiUHPE/application/PartB_02161_res_BPJDetSemiUHPE.jpg" width=100%></td> 
+    <td><img src="https://github.com/hnuzhy/hnuzhy.github.io/blob/main/projects/SemiUHPE/application/PartB_00351_res_BPJDetSemiUHPE.jpg" width=100%></td> 
   </tr>
 </table>
 More quantitative results of SemiUHPE on many in-the-wild images with multiple persons.
