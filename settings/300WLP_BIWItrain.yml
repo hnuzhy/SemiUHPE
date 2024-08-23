@@ -1,0 +1,32 @@
+gpu_ids: 0
+exp_name: 300WLP_BIWItrain
+
+is_full_range: False
+
+data_dir_300WLP: '/datasdc/zhouhuayi/dataset/headpose/300W_LP'
+data_dir_BIWItrain: '/datasdc/zhouhuayi/dataset/headpose/FSANet_data/BIWI_train_UDAHPE.npz'
+data_dir_BIWItest: '/datasdc/zhouhuayi/dataset/headpose/FSANet_data/BIWI_test_UDAHPE.npz'
+
+train_labeled: '300WLP'
+train_unlabeled: 'BIWI_train'
+test_set: 'BIWI_test'
+ss_ratio: 0.05
+
+network: 'resnet50'
+
+SSL_lambda: 1
+conf_thres: -5.3
+is_ema: True
+ema_decay: 0.999
+type_unsuper: 'ce'
+distribution: 'matrixFisher'
+
+lr: 1e-4
+batch_size: 32
+num_workers: 4
+ulb_batch_ratio: 4
+stage1_iteration: 50000
+max_iteration: 150000
+log_frequency: 100
+val_frequency: 1000
+save_frequency: 10000

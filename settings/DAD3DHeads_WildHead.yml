@@ -1,0 +1,33 @@
+gpu_ids: 0
+exp_name: DAD3DHeads_WildHead
+
+is_full_range: False
+
+data_dir_DAD3DHeads: '/datasdc/zhouhuayi/dataset/DAD-3DHeadsDataset'
+data_dir_WildHead: '/datasdc/zhouhuayi/dataset/FaceReconstruction/WildHead_60'
+data_dir_AFLW2000: '/datasdc/zhouhuayi/dataset/headpose/AFLW2000'
+data_dir_BIWItest: '/datasdc/zhouhuayi/dataset/headpose/FSANet_data/BIWI_test.npz'
+
+train_labeled: 'DAD3DHeads'
+train_unlabeled: 'WildHead'
+test_set: 'DAD3DHeads'
+ss_ratio: 0.05
+
+network: 'resnet50'
+
+SSL_lambda: 1
+conf_thres: -5.3
+is_ema: True
+ema_decay: 0.999
+type_unsuper: 'ce'
+distribution: 'matrixFisher'
+
+lr: 1e-4
+batch_size: 32
+num_workers: 4
+ulb_batch_ratio: 4
+stage1_iteration: 50000
+max_iteration: 150000
+log_frequency: 100
+val_frequency: 1000
+save_frequency: 10000
