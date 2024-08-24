@@ -3,10 +3,10 @@ Code for my paper `"Semi-Supervised Unconstrained Head Pose Estimation in the Wi
 
 ***
 
-<p align="center"><img src="https://github.com/hnuzhy/hnuzhy.github.io/blob/main/projects/SemiUHPE/img/teaser_image.png" width=90% ></p>
+<p align="center"><img src="https://github.com/hnuzhy/hnuzhy.github.io/blob/main/projects/SemiUHPE/img/teaser_image.png" width=95% ></p>
 The unconstrained head pose estimation results of our SemiUHPE on wild challenging heads (e.g., heavy blur, extreme illumination, severe occlusion, atypical pose, and invisible face).
 
-<p align="center"><img src="https://hnuzhy.github.io/projects/SemiUHPE/img/ComparingDAD3DHeads.png" width=90% ></p>
+<p align="center"><img src="https://hnuzhy.github.io/projects/SemiUHPE/img/ComparingDAD3DHeads.png" width=95% ></p>
 Qualitative results of our method (3rd line) and DAD-3DNet (2nd line) on heads from DAD-3DHeads test-set (1st line), which never appeared during SSL training.
 
 <table>
