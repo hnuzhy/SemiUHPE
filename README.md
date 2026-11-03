@@ -61,63 +61,74 @@ More quantitative results of SemiUHPE on many in-the-wild images with multiple p
 ### For training and testing offline 
 - Training Example 1 - Fully Supervised Training (Supervised): 20% labeled 300WLP + unlabeled left 300WLP (not used) + testing on AFLW2000
   ```bash
-  $ python train.py --config settings/300WLP_AFLW2000.yml --test_set AFLW2000 --network effinetv2 --num_workers 4
-    --stage1_iteration 60000 --max_iteration 60000 --ss_ratio 0.2 --gpu_ids 0 --batch_size 32 --val_frequency 500
+  $ python train.py --config settings/300WLP_AFLW2000.yml --test_set AFLW2000 \
+    --network effinetv2 --num_workers 4 --stage1_iteration 60000 --max_iteration 60000 \
+    --ss_ratio 0.2 --gpu_ids 0 --batch_size 32 --val_frequency 500
   $ python eval.py SSL1.0_r0.2_ce_effinetv2_t-5.3_b32_ema/Julxx_xxxxxx/best \
     --config settings/300WLP_AFLW2000.yml --network effinetv2 --batch_size 32 --gpu_ids 0
   ```
 - Training Example 2 - Semi-Supervised Training (SemiUHPE): 20% labeled 300WLP + unlabeled left 300WLP (used) + testing on AFLW2000
   ```bash
-  $ python train.py --config settings/300WLP_AFLW2000.yml --network effinetv2 --num_workers 4 --stage1_iteration 60000 \
-    --max_iteration 100000 --ss_ratio 0.20 --gpu_ids 0 --batch_size 32 --val_frequency 500 --ulb_batch_ratio 4 \
+  $ python train.py --config settings/300WLP_AFLW2000.yml \
+    --network effinetv2 --num_workers 4 --stage1_iteration 60000 --max_iteration 100000 \
+    --ss_ratio 0.20 --gpu_ids 0 --batch_size 32 --val_frequency 500 --ulb_batch_ratio 4 \
     --dynamic_thres --cutout_aug --cutmix_aug --SSL_lambda 1.0 --left_ratio 0.95
   $ python eval.py SSL1.0_r0.2_ce_effinetv2_tDyna0.95_b32_ema_CO_CM/Julxx_xxxxxx/best \
     --config settings/300WLP_AFLW2000.yml --network effinetv2 --batch_size 32 --gpu_ids 0
   ```
 - Training Example 3 - Semi-Supervised Training (Baseline): 10% labeled 300WLP + unlabeled left 300WLP (used) + testing on AFLW2000
   ```bash
-  $ python train.py --config settings/300WLP_AFLW2000.yml --network effinetv2 --num_workers 4 --stage1_iteration 40000 \
-    --max_iteration 80000 --ss_ratio 0.10 --gpu_ids 1 --batch_size 32 --val_frequency 500 --ulb_batch_ratio 4 --conf_thres -5.4
+  $ python train.py --config settings/300WLP_AFLW2000.yml \
+    --network effinetv2 --num_workers 4 --stage1_iteration 40000 --max_iteration 80000 \
+    --ss_ratio 0.10 --gpu_ids 1 --batch_size 32 --val_frequency 500 --ulb_batch_ratio 4 \
+    --conf_thres -5.4
   $ python eval.py SSL1.0_r0.1_ce_effinetv2_t-5.4_b32_ema/Julxx_xxxxxx/best \
     --config settings/300WLP_AFLW2000.yml --network effinetv2 --batch_size 32 --gpu_ids 0
   ```
 - Training Example 4 - Semi-Supervised Training (SemiUHPE): all labeled 300WLP + unlabeled COCOHead + testing on AFLW2000
   ```bash
-  $ python train.py --config settings/300WLP_COCOHead.yml --network effinetv2 --num_workers 8 --stage1_iteration 90000 \
-    --max_iteration 120000 --gpu_ids 1 --batch_size 32 --val_frequency 500 --ulb_batch_ratio 8 --dynamic_thres \
+  $ python train.py --config settings/300WLP_COCOHead.yml \
+    --network effinetv2 --num_workers 8 --stage1_iteration 90000 --max_iteration 120000 \
+    --gpu_ids 1 --batch_size 32 --val_frequency 500 --ulb_batch_ratio 8 --dynamic_thres \
     --cutout_aug --cutmix_aug --SSL_lambda 1.0 --left_ratio 0.75
   $ python eval.py SSL1.0_r0.05_ce_effinetv2_tDyna0.75_b32_ema_CO_CM/Julxx_xxxxxx/best \
     --config settings/300WLP_COCOHead.yml --network effinetv2 --batch_size 32 --gpu_ids 0
   ```
 - Training Example 5 - Semi-Supervised Training (SemiUHPE): labeled DAD3DHeads train-set + unlabeled COCOHead + testing on DAD3DHeads val-set
   ```bash
-  $ python train.py --config settings/DAD3DHeads_COCOHead.yml --network effinetv2 --num_workers 4 --stage1_iteration 100000 \
-    --max_iteration 200000 --gpu_ids 1 --batch_size 32 --val_frequency 500 --ulb_batch_ratio 4 --is_full_range \
+  $ python train.py --config settings/DAD3DHeads_COCOHead.yml \
+    --network effinetv2 --num_workers 4 --stage1_iteration 100000 --max_iteration 200000 \
+    --gpu_ids 1 --batch_size 32 --val_frequency 500 --ulb_batch_ratio 4 --is_full_range \
     --dynamic_thres --cutout_aug --cutmix_aug --rotate_aug --SSL_lambda 1.0  --left_ratio 0.75
-  $ python eval.py SSL1.0_r0.05_ce_effinetv2_tDyna0.75_b32_ema_RO_CO_CM_full/Julxx_xxxxxx/best --is_full_range \
-    --config settings/DAD3DHeads_COCOHead.yml --network effinetv2 --batch_size 32 --gpu_ids 0
+  $ python eval.py SSL1.0_r0.05_ce_effinetv2_tDyna0.75_b32_ema_RO_CO_CM_full/xxxxxx/best \
+    --is_full_range --config settings/DAD3DHeads_COCOHead.yml \
+    --network effinetv2 --batch_size 32 --gpu_ids 0
   ```
 ### For online evaluation
 - Evaluation Example 1 (on DAD3DHeads test-set): SemiUHPE + effinetv2-s (WildHead)
   ```bash
-  $ python eval_DAD3DHeads.py SSL1.0_r0.05_ce_effinetv2_tDyna0.75_b64_ema_RO_CO_CM_full/Julxx_xxxxxx/best \
-    --is_full_range --config settings/DAD3DHeads_WildHead.yml --network effinetv2 --gpu_ids 1
+  $ python eval_DAD3DHeads.py SSL1.0_r0.05_ce_effinetv2_tDyna0.75_b64_ema_RO_CO_CM_full/xxxxxx/best \
+    --is_full_range --config settings/DAD3DHeads_WildHead.yml \
+    --network effinetv2 --gpu_ids 1
   ```
 - Evaluation Example 2 (on DAD3DHeads test-set): SemiUHPE + resnet50 (COCOHead)
   ```bash
-  $ python eval_DAD3DHeads.py SSL1.0_r0.05_ce_tDyna0.75_b16_ema_RO_CO_CM_full/Sep20_195132/best \
-    --is_full_range --config settings/DAD3DHeads_COCOHead.yml --network resnet50 --gpu_ids 1
+  $ python eval_DAD3DHeads.py SSL1.0_r0.05_ce_tDyna0.75_b16_ema_RO_CO_CM_full/xxxxxx/best \
+    --is_full_range --config settings/DAD3DHeads_COCOHead.yml \
+    --network resnet50 --gpu_ids 1
   ```
   Then, the obtained json files should be emailed to dad3dheads@gmail.com as in [dad_3dheads_benchmark](https://github.com/PinataFarms/DAD-3DHeads/tree/main/dad_3dheads_benchmark).
 ### For inference on images/videos
 - Inference Example 1 (on images): SemiUHPE + resnet50 (COCOHead)
   ```bash
-  $ python image.py DAD-COCOHead-ResNet50-best --is_full_range --config settings/DAD3DHeads_COCOHead.yml \
+  $ python image.py DAD-COCOHead-ResNet50-best --is_full_range \
+    --config settings/DAD3DHeads_COCOHead.yml \
     --network resnet50 --gpu_ids 1
   ```
 - Inference Example 2 (on videos): SemiUHPE + effinetv2-s (WildHead)
   ```bash
-  $ python video.py DAD-WildHead-EffNetV2-S-best --is_full_range --config settings/DAD3DHeads_WildHead.yml \
+  $ python video.py DAD-WildHead-EffNetV2-S-best --is_full_range \
+    --config settings/DAD3DHeads_WildHead.yml \
     --network effinetv2 --gpu_ids 1
   ```
   Note, the corresponding pretrained model weights `DAD-COCOHead-ResNet50-best.pth` and `DAD-WildHead-EffNetV2-S-best.pth` for unconstrained head pose estimation are released in [huggingface](https://huggingface.co/HoyerChou/SemiUHPE) or [hf-mirror.com](https://hf-mirror.com/HoyerChou/SemiUHPE).
